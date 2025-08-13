@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Protect Community: An Interactive Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey, guiding the user from the core problem to the solution's architecture and practical implementation. It uses a top-down approach: 1. Hero section introduces the problem and vision. 2. "The Engine" section uses interactive tabs to explain the core technical components (ATL, Feed, Features) in a digestible way. 3. "The Blueprint" section uses an interactive timeline and clear cards to detail the roadmap and ethical considerations. 4. "Sustainability" and "Conclusion" sections provide practical and forward-looking context. This thematic structure was chosen over a linear report format to make the complex, interconnected concepts more engaging and easier to understand for a broader audience, focusing on "how it works" rather than just "what it is." -->
+    <!-- Visualization & Content Choices: 1. Algorithmic Trust Ledger (ATL): Report Info -> ATL Formula. Goal -> Explain a dynamic score. Viz -> Interactive Bar Chart (Chart.js). Interaction -> Users click buttons for positive/negative actions to see the score change in real-time, making an abstract formula tangible. 2. Implementation Roadmap: Report Info -> Phased Plan. Goal -> Show project progression over time. Viz -> HTML/CSS Timeline. Interaction -> Clicking a phase reveals its details, preventing information overload. 3. Hyper-Local Feed: Report Info -> Content Prioritization. Goal -> Demonstrate feed logic. Viz -> Simulated Feed (HTML/CSS). Interaction -> Filter buttons to dynamically show/hide content types, illustrating the engine's rules. 4. Ethical Risks: Report Info -> Ethical Considerations. Goal -> Clearly present risks and solutions. Viz -> 3-column card layout. Interaction -> Static, side-by-side comparison for maximum clarity. All choices prioritize interaction and clarity to support the designed narrative flow. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #059669; /* emerald-600 */
+            border-bottom-color: #059669;
+        }
+        .tab-button.active {
+            background-color: #059669;
+            color: white;
+        }
+        .timeline-item.active .timeline-content {
+            display: block;
+        }
+        .feed-item {
+            transition: opacity 0.5s, transform 0.5s;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-emerald-700">Self Protect Community</h1>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#problem" class="nav-link font-medium text-slate-600 pb-1">The Problem</a>
+                <a href="#engine" class="nav-link font-medium text-slate-600 pb-1">The Engine</a>
+                <a href="#blueprint" class="nav-link font-medium text-slate-600 pb-1">The Blueprint</a>
+                <a href="#sustainability" class="nav-link font-medium text-slate-600 pb-1">Sustainability</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#problem" class="block py-2 text-slate-600 font-medium">The Problem</a>
+            <a href="#engine" class="block py-2 text-slate-600 font-medium">The Engine</a>
+            <a href="#blueprint" class="block py-2 text-slate-600 font-medium">The Blueprint</a>
+            <a href="#sustainability" class="block py-2 text-slate-600 font-medium">Sustainability</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold text-emerald-800 mb-4">Building Safer Communities Through Trust</h2>
+                <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                    An interactive exploration of the Self Protect Community framework, a plan to transform urban safety from a reactive tool into a proactive, socially-integrated ecosystem built on algorithmic trust and collective action.
+                </p>
+            </div>
+        </section>
+
+        <section id="problem" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-800">The Urban Safety Paradox</h3>
+                    <p class="mt-4 text-slate-600 max-w-3xl mx-auto">This section introduces the core challenge the framework aims to solve. While digital connectivity is at an all-time high, the local community bonds that ensure our physical safety have weakened. We explore why current digital tools fall short and how a new approach is needed.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-8 rounded-lg shadow-md border border-slate-200">
+                        <h4 class="text-xl font-semibold text-red-600 mb-3">The Problem</h4>
+                        <p class="text-slate-600">In cities like Dhaka, digital connectivity soars, but local trust erodes. People rely on global platforms like Facebook for safety news, but these are filled with misinformation and lack credible, hyper-local alerts. Dedicated safety apps fail because they're only used in emergencies, not daily.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-8 rounded-lg shadow-md border border-emerald-200">
+                        <h4 class="text-xl font-semibold text-emerald-700 mb-3">The Proposed Solution</h4>
+                        <p class="text-slate-700">Self Protect Community reimagines safety as a social ecosystem. It integrates **Social Capital Theory** (building community bonds) with **Pro-Social Gamification** (rewarding helpful behavior) to create a platform that people use daily, building a resilient network based on verifiable trust.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="engine" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-800">The Core Engine</h3>
+                    <p class="mt-4 text-slate-600 max-w-3xl mx-auto">This is the heart of the framework. We've broken down the complex architecture into three key components. Use the tabs below to explore how the platform builds trust, prioritizes information, and provides users with the tools they need to stay safe and connected.</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex justify-center space-x-2 md:space-x-4 mb-8 border-b border-slate-200">
+                        <button class="tab-button flex-1 md:flex-none px-4 py-2 font-medium rounded-t-lg text-slate-600 active" data-tab="atl">Algorithmic Trust</button>
+                        <button class="tab-button flex-1 md:flex-none px-4 py-2 font-medium rounded-t-lg text-slate-600" data-tab="feed">Hyper-Local Feed</button>
+                        <button class="tab-button flex-1 md:flex-none px-4 py-2 font-medium rounded-t-lg text-slate-600" data-tab="features">Feature Suite</button>
+                    </div>
+
+                    <div id="atl" class="tab-content">
+                        <h4 class="text-xl font-semibold text-center mb-2">The Algorithmic Trust Ledger (ATL)</h4>
+                        <p class="text-slate-600 text-center mb-6">The ATL is a dynamic score that quantifies a user's credibility. It's not static; it grows with positive contributions and decreases with negative ones. Interact with the chart below to see how different actions impact a user's Trust Score.</p>
+                        <div class="chart-container">
+                            <canvas id="trustChart"></canvas>
+                        </div>
+                        <div class="text-center mt-6">
+                            <p id="trust-explanation" class="text-slate-600 italic h-6">Your actions shape your trust. Click a button to see.</p>
+                        </div>
+                        <div class="flex justify-center flex-wrap gap-3 mt-4">
+                            <button class="action-btn bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-full" data-action="thanks" data-value="10">+ Receive "Thanks"</button>
+                            <button class="action-btn bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-full" data-action="validate" data-value="20">+ Validate a Report</button>
+                            <button class="action-btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full" data-action="misinfo" data-value="-15">- Flagged for Misinfo</button>
+                             <button class="action-btn bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-full" data-action="reset" data-value="0">Reset Score</button>
+                        </div>
+                    </div>
+
+                    <div id="feed" class="tab-content hidden">
+                         <h4 class="text-xl font-semibold text-center mb-2">Hyper-Local Content & Alert Engine</h4>
+                        <p class="text-slate-600 text-center mb-8">The feed isn't random; it's intelligently prioritized to show the most relevant and urgent information first. Content is ranked by urgency, geographic proximity, and the sender's Trust Score. Use the filters to see how the feed changes.</p>
+                        <div class="flex justify-center gap-3 mb-6">
+                            <button class="feed-filter-btn bg-emerald-600 text-white px-4 py-2 rounded-full" data-filter="all">All</button>
+                            <button class="feed-filter-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-full" data-filter="sos">🆘 SOS Alerts</button>
+                            <button class="feed-filter-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-full" data-filter="gr">📝 General Reports</button>
+                            <button class="feed-filter-btn bg-slate-200 text-slate-700 px-4 py-2 rounded-full" data-filter="tip">💡 Safety Tips</button>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg space-y-3 max-h-[500px] overflow-y-auto">
+                            <div class="feed-item p-4 rounded-lg bg-red-100 border border-red-200" data-type="sos">
+                                <p class="font-bold text-red-700">🆘 SOS ALERT: Mirpur-10</p>
+                                <p class="text-sm text-slate-600">User requires immediate assistance. Location shared with SafeCircle & authorities.</p>
+                            </div>
+                            <div class="feed-item p-4 rounded-lg bg-white border border-slate-200" data-type="gr">
+                                <p class="font-bold text-slate-800">📝 REPORT: Broken Streetlight</p>
+                                <p class="text-sm text-slate-600">Location: Road 5, Dhanmondi. Multiple users have validated this report.</p>
+                            </div>
+                             <div class="feed-item p-4 rounded-lg bg-blue-100 border border-blue-200" data-type="tip">
+                                <p class="font-bold text-blue-700">💡 SAFETY TIP from a Safety Influencer</p>
+                                <p class="text-sm text-slate-600">"Check your digital footprint. Review privacy settings on social media regularly."</p>
+                            </div>
+                            <div class="feed-item p-4 rounded-lg bg-white border border-slate-200" data-type="gr">
+                                <p class="font-bold text-slate-800">📝 REPORT: Suspicious Activity</p>
+                                <p class="text-sm text-slate-600">Location: Near Gulshan 2 Circle. Awaiting validation.</p>
+                            </div>
+                             <div class="feed-item p-4 rounded-lg bg-red-100 border border-red-200" data-type="sos">
+                                <p class="font-bold text-red-700">🆘 SOS ALERT: Uttara Sector 4</p>
+                                <p class="text-sm text-slate-600">User reports feeling unsafe. SafeCircle has been notified.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="features" class="tab-content hidden">
+                        <h4 class="text-xl font-semibold text-center mb-2">Pro-Social Feature Suite</h4>
+                        <p class="text-slate-600 text-center mb-8">The platform is more than alerts. It's a suite of tools designed to foster community, document incidents securely, and empower users to lead safety initiatives.</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                                <h5 class="font-bold text-lg text-emerald-700 mb-2">🆘 Tiered SOS & Reporting</h5>
+                                <p class="text-slate-600">A smart SOS button alerts contacts, SafeCircles, and authorities. Structured General Reports (GRs) for non-emergencies require a minimum Trust Score to prevent misuse.</p>
+                            </div>
+                             <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                                <h5 class="font-bold text-lg text-emerald-700 mb-2">🛡️ AI-Powered SafeCircles</h5>
+                                <p class="text-slate-600">The system suggests small, private support groups of 3-7 nearby, high-trust users, creating resilient micro-communities for mutual aid.</p>
+                            </div>
+                            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                                <h5 class="font-bold text-lg text-emerald-700 mb-2">📓 Encrypted Virtual Diary</h5>
+                                <p class="text-slate-600">A private, end-to-end encrypted space to log incidents with timestamps and media. This data can be attached to formal reports as verifiable evidence.</p>
+                            </div>
+                            <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                                <h5 class="font-bold text-lg text-emerald-700 mb-2">📣 Community & Campaigns</h5>
+                                <p class="text-slate-600">High-trust users can become "Safety Influencers." A built-in toolkit allows anyone to organize community campaigns, like CCTV fundraisers or cleanups.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blueprint" class="py-16 md:py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-800">The Blueprint for Reality</h3>
+                    <p class="mt-4 text-slate-600 max-w-3xl mx-auto">A framework is only as good as its plan for implementation and its ethical integrity. This section outlines the phased roadmap to bring Self Protect Community to life and the critical safeguards we've designed to protect users and ensure fairness.</p>
+                </div>
+
+                <div class="mb-16">
+                    <h4 class="text-xl font-semibold text-center mb-8">Implementation Roadmap</h4>
+                    <div class="relative max-w-5xl mx-auto">
+                        <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-300"></div>
+                        <div id="timeline-container" class="space-y-12">
+                            <div class="timeline-item active" data-phase="1">
+                                <div class="flex items-center">
+                                    <div class="w-1/2 pr-8 text-right">
+                                        <div class="font-bold text-lg text-emerald-700">Phase 1</div>
+                                        <div class="text-sm text-slate-500">3 Months</div>
+                                    </div>
+                                    <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center z-10 mx-auto font-bold text-xl">1</div>
+                                    <div class="w-1/2 pl-8"><h5 class="font-semibold text-lg">Research & Prototyping</h5></div>
+                                </div>
+                                <div class="timeline-content hidden mt-4 text-center bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+                                    Conduct focus groups in Dhaka, develop low-fidelity wireframes, and establish initial parameters for the ATL based on qualitative user feedback.
+                                </div>
+                            </div>
+                             <div class="timeline-item" data-phase="2">
+                                <div class="flex items-center">
+                                    <div class="w-1/2 pr-8 text-right"><h5 class="font-semibold text-lg">Alpha & Closed Beta</h5></div>
+                                    <div class="w-12 h-12 rounded-full bg-slate-400 text-white flex items-center justify-center z-10 mx-auto font-bold text-xl">2</div>
+                                    <div class="w-1/2 pl-8">
+                                         <div class="font-bold text-lg text-emerald-700">Phase 2</div>
+                                        <div class="text-sm text-slate-500">6 Months</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-content hidden mt-4 text-center bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+                                    Develop the core PWA and launch a closed beta with 200-300 users in a single Dhaka neighborhood to calibrate the ATL algorithm with real-world data.
+                                </div>
+                            </div>
+                             <div class="timeline-item" data-phase="3">
+                                <div class="flex items-center">
+                                    <div class="w-1/2 pr-8 text-right">
+                                        <div class="font-bold text-lg text-emerald-700">Phase 3</div>
+                                        <div class="text-sm text-slate-500">9 Months</div>
+                                    </div>
+                                    <div class="w-12 h-12 rounded-full bg-slate-400 text-white flex items-center justify-center z-10 mx-auto font-bold text-xl">3</div>
+                                    <div class="w-1/2 pl-8"><h5 class="font-semibold text-lg">Pilot & Public Beta</h5></div>
+                                </div>
+                                <div class="timeline-content hidden mt-4 text-center bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+                                    Launch a public beta in two selected areas of Dhaka, onboard local businesses as "Safe Places," and measure key performance indicators like response times and user activity.
+                                </div>
+                            </div>
+                             <div class="timeline-item" data-phase="4">
+                                <div class="flex items-center">
+                                    <div class="w-1/2 pr-8 text-right"><h5 class="font-semibold text-lg">Study & Scaled Rollout</h5></div>
+                                    <div class="w-12 h-12 rounded-full bg-slate-400 text-white flex items-center justify-center z-10 mx-auto font-bold text-xl">4</div>
+                                    <div class="w-1/2 pl-8">
+                                         <div class="font-bold text-lg text-emerald-700">Phase 4</div>
+                                        <div class="text-sm text-slate-500">12-24 Months</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-content hidden mt-4 text-center bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+                                    Analyze the platform's impact on crime statistics and perceived safety, publish findings, and begin a phased rollout to other major cities.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-semibold text-center mb-8">Ethical Safeguards</h4>
+                    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                            <h5 class="font-bold text-lg text-slate-800 mb-3">Preventing Digital Vigilantism</h5>
+                            <p class="text-slate-600">Reports are structured (no free-text accusations) and require a minimum Trust Score. A transparent appeals process, overseen by a Community Moderation Council, ensures fairness.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                            <h5 class="font-bold text-lg text-slate-800 mb-3">Ensuring Algorithmic Fairness</h5>
+                            <p class="text-slate-600">The ATL will undergo regular, independent audits to correct for demographic or socioeconomic biases. The scoring logic will be explained in a public-facing document.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                            <h5 class="font-bold text-lg text-slate-800 mb-3">Upholding Data Privacy</h5>
+                            <p class="text-slate-600">Location is shared *only* during an active SOS alert with explicit consent. The Virtual Diary is end-to-end encrypted. The platform is designed for GDPR-level compliance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sustainability" class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-800">Monetization & Sustainability</h3>
+                    <p class="mt-4 text-slate-600 max-w-3xl mx-auto">To ensure long-term viability without compromising user trust, the platform will employ a multi-pronged revenue model that aligns with its core mission of community safety.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-emerald-50 p-6 rounded-lg border border-emerald-200 text-center">
+                        <div class="text-4xl mb-3">💰</div>
+                        <h5 class="font-bold text-lg text-emerald-800 mb-2">Creator Economy</h5>
+                        <p class="text-slate-600 text-sm">Revenue sharing with verified "Safety Influencers" from non-intrusive ads on their premium content.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-lg border border-emerald-200 text-center">
+                        <div class="text-4xl mb-3">🤝</div>
+                        <h5 class="font-bold text-lg text-emerald-800 mb-2">Campaign Services</h5>
+                        <p class="text-slate-600 text-sm">A nominal 2-3% platform fee on funds raised through the Campaigns feature to cover operational costs.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-lg border border-emerald-200 text-center">
+                        <div class="text-4xl mb-3">🏪</div>
+                        <h5 class="font-bold text-lg text-emerald-800 mb-2">B2B Subscriptions</h5>
+                        <p class="text-slate-600 text-sm">Local businesses can subscribe to be listed as verified "Safe Places," gaining visibility and community trust.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-6 rounded-lg border border-emerald-200 text-center">
+                        <div class="text-4xl mb-3">📈</div>
+                        <h5 class="font-bold text-lg text-emerald-800 mb-2">Self Protect Pro</h5>
+                        <p class="text-slate-600 text-sm">A premium service for institutions offering anonymized, aggregated incident heatmaps and analytics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-4">A Vision for a Safer Future</h3>
+            <p class="max-w-3xl mx-auto text-slate-300 mb-6">Self Protect Community is more than an app; it's a scalable blueprint for enhancing urban security by empowering citizens. By making safety a daily, rewarding habit, we can build resilient, self-protecting communities, one trusted action at a time.</p>
+            <p class="text-sm text-slate-400">Framework by Md Imtiaz Ahmed Nahid | Interactive SPA by Gemini</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => item.classList.remove('active'));
+                    tab.classList.add('active');
+                    const target = tab.getAttribute('data-tab');
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                        if (content.id === target) {
+                            content.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+
+            const feedFilterBtns = document.querySelectorAll('.feed-filter-btn');
+            const feedItems = document.querySelectorAll('.feed-item');
+            feedFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    feedFilterBtns.forEach(b => b.classList.replace('bg-emerald-600', 'bg-slate-200') || b.classList.replace('text-white', 'text-slate-700'));
+                    btn.classList.replace('bg-slate-200', 'bg-emerald-600');
+                    btn.classList.replace('text-slate-700', 'text-white');
+
+                    const filter = btn.getAttribute('data-filter');
+                    feedItems.forEach(item => {
+                        item.style.transform = 'scale(0.9)';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            if (filter === 'all' || item.dataset.type === filter) {
+                                item.style.display = 'block';
+                                setTimeout(() => {
+                                    item.style.transform = 'scale(1)';
+                                    item.style.opacity = '1';
+                                }, 50);
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }, 500);
+                    });
+                });
+            });
+            
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    timelineItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.timeline-content').style.display = 'none';
+                        i.querySelector('.w-12.h-12').classList.replace('bg-emerald-600', 'bg-slate-400');
+                    });
+                    item.classList.add('active');
+                    item.querySelector('.timeline-content').style.display = 'block';
+                    item.querySelector('.w-12.h-12').classList.replace('bg-slate-400', 'bg-emerald-600');
+                });
+            });
+
+
+            const ctx = document.getElementById('trustChart').getContext('2d');
+            let trustScore = 50;
+            const trustChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Trust Score'],
+                    datasets: [{
+                        label: 'User Trust Score',
+                        data: [trustScore],
+                        backgroundColor: ['#10b981'],
+                        borderColor: ['#059669'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Trust Score: ${context.raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const actionBtns = document.querySelectorAll('.action-btn');
+            const explanationEl = document.getElementById('trust-explanation');
+            const explanations = {
+                thanks: "Receiving thanks from the community boosts your score.",
+                validate: "Validating reports is a key contribution and significantly raises your score.",
+                misinfo: "Spreading misinformation damages trust and lowers your score.",
+                reset: "Score has been reset."
+            };
+
+            actionBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const action = btn.dataset.action;
+                    const value = parseInt(btn.dataset.value);
+
+                    if (action === 'reset') {
+                        trustScore = 50;
+                    } else {
+                        trustScore += value;
+                    }
+                    
+                    if (trustScore > 100) trustScore = 100;
+                    if (trustScore < 0) trustScore = 0;
+
+                    trustChart.data.datasets[0].data[0] = trustScore;
+                    trustChart.update();
+                    explanationEl.textContent = explanations[action];
+                });
+            });
+        });
+    </script>
+</body>
+</html>
