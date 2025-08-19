@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,7 +143,7 @@
             </div>
 
             <div id="feed-container" class="p-2 md:p-4 space-y-3">
-                </div>
+            </div>
         </div>
         
         <div id="view-videos" class="view">
@@ -156,9 +155,9 @@
             </header>
             <div class="flex-grow relative">
                 <div id="reels-container" class="video-tab-content absolute inset-0">
-                    </div>
+                </div>
                 <div id="training-container" class="video-tab-content hidden absolute inset-0 p-4 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto">
-                    </div>
+                </div>
             </div>
         </div>
 
@@ -181,12 +180,12 @@
                 <div>
                     <h2 class="font-bold text-slate-700 mb-3">My SafeCircles</h2>
                     <div id="my-safecircle-container" class="space-y-3">
-                        </div>
+                    </div>
                 </div>
                  <div>
                     <h2 class="font-bold text-slate-700 mb-3">Suggested Circles</h2>
                     <div id="suggested-safecircle-container" class="space-y-3">
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -248,8 +247,8 @@
 
     <div id="modal-container" class="fixed inset-0 z-40 pointer-events-none">
         
-        <div id="login-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
-            <div class="modal-content bg-white rounded-lg shadow-2xl p-6 w-full max-w-sm text-center transform scale-100">
+        <div id="login-modal" class="modal hidden opacity-0 fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
+            <div class="modal-content bg-white rounded-lg shadow-2xl p-6 w-full max-w-sm text-center transform scale-95">
                 <h2 class="text-3xl font-bold text-slate-800 mb-2">Welcome</h2>
                 <p class="text-sm text-slate-500 mb-6">Your safety starts here. Login to join the community.</p>
                 <form id="login-form" class="space-y-4">
@@ -1084,27 +1083,25 @@
 
             // --- Login/Skip Logic ---
             function showMainApp() {
-                loginModal.classList.add('opacity-0');
-                loginModal.querySelector('.modal-content').classList.add('scale-95');
-                setTimeout(() => {
-                    loginModal.classList.add('hidden');
-                    modalContainer.classList.add('pointer-events-none');
-                }, 300);
+                closeModal('login-modal');
+                // Since the feed view is the default, this line isn't strictly necessary but is good practice.
+                // It ensures the main feed is shown after the modal is closed, especially if the app state were more complex.
+                switchView('feed');
             }
 
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 showMainApp();
-                switchView('feed');
             });
 
             skipLoginBtn.addEventListener('click', () => {
                 showMainApp();
-                switchView('feed');
             });
 
 
             // --- Initial Render ---
+            // Fix: The login modal is now a hidden modal and is explicitly opened on page load.
+            openModal('login-modal');
             renderFeed();
             renderReels();
             renderTrainingVideos();
