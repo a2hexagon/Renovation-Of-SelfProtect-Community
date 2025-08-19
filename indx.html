@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Self Protect Community - Prototype</title>
-    <!-- The PWA manifest link will be added dynamically by the script below -->
     <link id="pwa-manifest" rel="manifest" href="">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -96,7 +95,6 @@
 </head>
 <body class="h-screen flex flex-col">
 
-    <!-- Global Top Navigation Bar -->
     <header class="bg-white shadow-sm p-4 sticky top-0 z-20 flex justify-between items-center">
         <div class="flex items-center">
             <h1 class="text-2xl font-bold text-slate-800">SelfProtect</h1>
@@ -104,18 +102,16 @@
         </div>
         <div class="flex items-center space-x-4">
             <button id="install-button" class="bg-red-600 text-white font-bold py-1 px-3 rounded-full text-sm hidden">Install App</button>
-            <button class="text-slate-500 hover:text-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+            <button id="help-request-btn" class="text-slate-500 hover:text-red-600">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 0a2.5 2.5 0 11-3.536-3.536m3.536 3.536l3.536-3.536m0 0a2.5 2.5 0 11-3.536 3.536m-7.072 0a2.5 2.5 0 11-3.536-3.536m3.536 3.536l-3.536 3.536m0 0a2.5 2.5 0 11-3.536-3.536m10.608 3.536l-3.536-3.536m3.536 3.536a2.5 2.5 0 11-3.536-3.536m3.536 3.536l-3.536 3.536m0 0a2.5 2.5 0 11-3.536-3.536" /></svg>
             </button>
-            <button class="text-slate-500 hover:text-red-600">
-                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <button id="share-location-btn" class="text-slate-500 hover:text-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path d="M15.5 12a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0z" /></svg>
             </button>
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main>
-        <!-- Home / Feed View -->
         <div id="view-feed" class="view active">
             
             <div id="notification-bar" class="notification-bar hidden bg-red-100 border-b-2 border-red-500 p-3 transform -translate-y-full">
@@ -147,11 +143,9 @@
             </div>
 
             <div id="feed-container" class="p-2 md:p-4 space-y-3">
-                <!-- Feed items will be injected here by JS -->
-            </div>
+                </div>
         </div>
         
-        <!-- Videos View -->
         <div id="view-videos" class="view">
             <header class="bg-white shadow-sm sticky top-16 z-10 flex-shrink-0">
                 <div class="flex justify-around">
@@ -161,15 +155,12 @@
             </header>
             <div class="flex-grow relative">
                 <div id="reels-container" class="video-tab-content absolute inset-0">
-                    <!-- Video reel items will be injected here by JS -->
-                </div>
+                    </div>
                 <div id="training-container" class="video-tab-content hidden absolute inset-0 p-4 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto">
-                    <!-- Training video cards will be injected here by JS -->
-                </div>
+                    </div>
             </div>
         </div>
 
-        <!-- SafeCircle View -->
         <div id="view-safecircle" class="view">
             <header class="bg-white shadow-sm p-4 sticky top-16 z-10 flex justify-between items-center">
                 <div>
@@ -179,7 +170,6 @@
                 <button id="create-safecircle-btn" class="bg-red-600 text-white font-bold py-2 px-4 rounded-lg text-sm">Create Circle</button>
             </header>
             <div class="p-4 space-y-6">
-                <!-- Safe Map Section -->
                 <div id="safe-map-card" class="bg-white p-4 rounded-lg shadow cursor-pointer">
                     <h2 class="font-bold text-lg text-slate-800 mb-2">Safe Map</h2>
                     <div class="h-32 bg-slate-200 rounded-lg flex items-center justify-center">
@@ -190,19 +180,16 @@
                 <div>
                     <h2 class="font-bold text-slate-700 mb-3">My SafeCircles</h2>
                     <div id="my-safecircle-container" class="space-y-3">
-                        <!-- User's SafeCircles will be injected here -->
-                    </div>
+                        </div>
                 </div>
                  <div>
                     <h2 class="font-bold text-slate-700 mb-3">Suggested Circles</h2>
                     <div id="suggested-safecircle-container" class="space-y-3">
-                        <!-- Suggested SafeCircles will be injected here -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
 
-        <!-- Profile View -->
         <div id="view-profile" class="view">
              <header class="bg-white shadow-sm p-4 sticky top-16 z-10">
                 <h1 class="text-xl font-bold text-slate-800">My Profile</h1>
@@ -231,12 +218,10 @@
         </div>
     </main>
 
-    <!-- Floating SOS Button -->
     <button id="sos-button" class="fixed bottom-20 right-5 bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl z-30 animate-pulse">
         <span class="font-bold text-xl">SOS</span>
     </button>
 
-    <!-- Bottom Navigation -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-t border-t border-slate-200 flex justify-around p-2 z-20">
         <button class="nav-item active flex flex-col items-center text-slate-500 w-1/5" data-view="feed">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
@@ -260,9 +245,7 @@
         </button>
     </nav>
 
-    <!-- Modals -->
     <div id="modal-container" class="fixed inset-0 z-40 pointer-events-none">
-        <!-- SOS Modal -->
         <div id="sos-modal" class="modal hidden opacity-0 fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4">
             <div class="modal-content bg-white rounded-lg shadow-2xl p-6 w-full max-w-sm text-center transform scale-95">
                 <h2 class="text-2xl font-bold text-red-600">SOS ALERT</h2>
@@ -273,10 +256,9 @@
             </div>
         </div>
 
-        <!-- Report Modal -->
         <div id="report-modal" class="modal hidden opacity-0 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
             <div class="modal-content bg-white rounded-lg shadow-xl p-6 w-full max-w-md transform scale-95">
-                <h2 class="text-xl font-bold text-slate-800 mb-4">Report or Log</h2>
+                <h2 id="report-modal-title" class="text-xl font-bold text-slate-800 mb-4">Report or Log</h2>
                 <form id="report-form">
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-slate-700 mb-2">What would you like to do?</label>
@@ -333,7 +315,6 @@
             </div>
         </div>
         
-        <!-- Create SafeCircle Modal -->
         <div id="create-safecircle-modal" class="modal hidden opacity-0 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
             <div class="modal-content bg-white rounded-lg shadow-xl p-6 w-full max-w-md transform scale-95">
                 <h2 class="text-xl font-bold text-slate-800 mb-4">Create a New SafeCircle</h2>
@@ -354,7 +335,6 @@
             </div>
         </div>
         
-        <!-- View Profile Modal -->
         <div id="view-profile-modal" class="modal hidden opacity-0 fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
             <div class="modal-content bg-white rounded-lg shadow-xl p-6 w-full max-w-sm transform scale-95">
                  <div class="flex items-center space-x-4">
@@ -372,7 +352,6 @@
             </div>
         </div>
 
-        <!-- Safe Map Modal -->
         <div id="safe-map-modal" class="modal hidden opacity-0 fixed inset-0 bg-black bg-opacity-80 flex flex-col p-4">
             <div class="modal-content bg-slate-800 rounded-lg shadow-2xl w-full max-w-3xl mx-auto flex-1 flex flex-col transform scale-95">
                 <header class="p-4 flex justify-between items-center border-b border-slate-700 flex-shrink-0">
@@ -531,6 +510,14 @@
             const views = document.querySelectorAll('.view');
             const navItems = document.querySelectorAll('.nav-item');
             const modalContainer = document.getElementById('modal-container');
+            const helpRequestBtn = document.getElementById('help-request-btn');
+            const shareLocationBtn = document.getElementById('share-location-btn');
+            const reportModalTitle = document.getElementById('report-modal-title');
+            const reportTitleInput = document.getElementById('report-title');
+            const reportDescInput = document.getElementById('report-description');
+            const reportTypeDiary = document.getElementById('report_type_diary');
+            const reportTypeGeneral = document.getElementById('report_type_general');
+            const reportLocationInput = document.getElementById('report-location');
 
             // --- Mock Data ---
             let users = {
@@ -914,11 +901,6 @@
             const reportForm = document.getElementById('report-form');
             const cancelReportBtn = document.getElementById('cancel-report-btn');
             const getLocationBtn = document.getElementById('get-location-btn');
-            const reportLocationInput = document.getElementById('report-location');
-            const reportTypeRadios = document.querySelectorAll('input[name="report_type"]');
-            const formGeneralIssue = document.getElementById('form-general-issue');
-            const formUserReport = document.getElementById('form-user-report');
-            const formDiaryLog = document.getElementById('form-diary-log');
 
             reportTypeRadios.forEach(radio => {
                 radio.addEventListener('change', (e) => {
@@ -931,11 +913,47 @@
                 });
             });
 
-            navReportBtn.addEventListener('click', () => openModal('report-modal'));
+            navReportBtn.addEventListener('click', () => {
+                reportModalTitle.textContent = 'Report or Log';
+                reportTypeGeneral.checked = true;
+                formGeneralIssue.classList.remove('hidden');
+                formUserReport.classList.add('hidden');
+                formDiaryLog.classList.add('hidden');
+                openModal('report-modal');
+            });
             cancelReportBtn.addEventListener('click', () => closeModal('report-modal'));
 
             getLocationBtn.addEventListener('click', () => {
                 reportLocationInput.value = 'Gazipur, Dhaka Division';
+            });
+
+            helpRequestBtn.addEventListener('click', () => {
+                reportModalTitle.textContent = 'Quick Help Request';
+                reportTitleInput.value = 'URGENT: I need help!';
+                reportDescInput.value = 'Please send help to my location. I am in a dangerous situation.';
+                reportTypeGeneral.checked = true;
+                formGeneralIssue.classList.remove('hidden');
+                formUserReport.classList.add('hidden');
+                formDiaryLog.classList.add('hidden');
+                openModal('report-modal');
+            });
+
+            shareLocationBtn.addEventListener('click', () => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                        const { latitude, longitude } = position.coords;
+                        const newEntry = {
+                            text: `My current location is: Lat ${latitude.toFixed(4)}, Lon ${longitude.toFixed(4)}`,
+                            date: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })
+                        };
+                        diaryEntries.push(newEntry);
+                        alert('Location shared to your private diary successfully.');
+                    }, () => {
+                        alert('Unable to retrieve your location. Please check your device settings.');
+                    });
+                } else {
+                    alert('Geolocation is not supported by your browser.');
+                }
             });
 
             reportForm.addEventListener('submit', (e) => {
@@ -983,11 +1001,11 @@
                 }
 
                 reportForm.reset();
+                reportModalTitle.textContent = 'Report or Log';
+                reportTypeGeneral.checked = true;
                 formGeneralIssue.classList.remove('hidden');
                 formUserReport.classList.add('hidden');
                 formDiaryLog.classList.add('hidden');
-                document.getElementById('report_type_general').checked = true;
-
                 closeModal('report-modal');
             });
 
